@@ -1,12 +1,12 @@
-function slider() {
-    const slider = document.querySelector(".offer__slider"),
-    slides = document.querySelectorAll(".offer__slide"),
-    btnNext = document.querySelector(".offer__slider-next"),
-    btnPrev = document.querySelector(".offer__slider-prev"),
-    total = document.querySelector("#total"),
-    current = document.querySelector("#current"),
-    sliderWrapper = document.querySelector(".offer__slider-wrapper"),
-    sliderField = document.querySelector(".offer__slider-inner"),
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
+    let slider = document.querySelector(slide),
+    slides = document.querySelectorAll(container),
+    btnNext = document.querySelector(nextArrow),
+    btnPrev = document.querySelector(prevArrow),
+    total = document.querySelector(totalCounter),
+    current = document.querySelector(currentCounter),
+    sliderWrapper = document.querySelector(wrapper),
+    sliderField = document.querySelector(field),
     width = window.getComputedStyle(sliderWrapper).width;
 
 let slideIndex = 1,
@@ -156,4 +156,4 @@ dots.forEach(dot => {
 
 }
 
-module.exports = slider
+export default slider;
