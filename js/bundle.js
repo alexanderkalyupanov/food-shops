@@ -413,25 +413,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
-    let slider = document.querySelector(container),
-    slides = document.querySelectorAll(slide),
-    btnNext = document.querySelector(nextArrow),
-    btnPrev = document.querySelector(prevArrow),
-    total = document.querySelector(totalCounter),
-    current = document.querySelector(currentCounter),
-    sliderWrapper = document.querySelector(wrapper),
-    sliderField = document.querySelector(field),
-    width = window.getComputedStyle(sliderWrapper).width;
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter,wrapper, field}) {
+  let offset = 0;
+  let slideIndex = 1;
 
-let slideIndex = 1,
-  offset = 0;
+  const slides = document.querySelectorAll(slide),
+      slider = document.querySelector(container),
+      prev = document.querySelector(prevArrow),
+      next = document.querySelector(nextArrow),
+      total = document.querySelector(totalCounter),
+      current = document.querySelector(currentCounter),
+      slidesWrapper = document.querySelector(wrapper),
+      width = window.getComputedStyle(slidesWrapper).width,
+      slidesField = document.querySelector(field);
 
   if (slides.length < 10) {
-    total.textContent = `0${slides.length}`;
+      total.textContent = `0${slides.length}`;
+      current.textContent =  `0${slideIndex}`;
   } else {
-    total.textContent = slides.length;
+      total.textContent = slides.length;
+      current.textContent =  slideIndex;
   }
+  
 
 sliderField.style.width = 100 * slides.length + "%";
 sliderField.style.display = "flex";    
