@@ -9,12 +9,26 @@ function calc() {
         sex = "female"
         localStorage.setItem("sex", "female");
     }
-    if (localStorage.getItem("data-ratio")) {
+    if (localStorage.getItem("ratio")) {
         sex = localStorage.getItem("ratio")
     } else {
         ratio = 1.375
         localStorage.setItem("ratio", 1.375);
     }
+
+    function calcTotal() {
+        if (!height || !weight || !age || !ratio || !sex ) {
+            result.textContent = "..."
+            return;
+        }
+        if (sex === "female") {
+            result.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
+        } else {
+            result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
+        }
+    }
+
+    calcTotal();
 
     function initialLocalSettings(selector, activeClass) {
         const elements = document.querySelectorAll(selector);
@@ -32,18 +46,6 @@ function calc() {
 
     initialLocalSettings("#gender div", "calculating__choose-item_active");
     initialLocalSettings(".calculating__choose_big div", "calculating__choose-item_active");
-
-    function calcTotal() {
-        if (!height || !weight || !age || !ratio || !sex ) {
-            result.textContent = "..."
-            return;
-        }
-        if (sex === "female") {
-            result.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
-        } else {
-            result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
-        }
-    }
 
     function getStaticInformation(selector, activeClass) {
         const element = document.querySelectorAll(selector);
@@ -89,8 +91,9 @@ function calc() {
                     age = +input.value;
                     break;
             }
+            calcTotal();
         })
-        calcTotal();
+      
     }
 
     getDynamicInformation("#height");

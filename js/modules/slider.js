@@ -1,6 +1,6 @@
 function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
-    let slider = document.querySelector(slide),
-    slides = document.querySelectorAll(container),
+    let slider = document.querySelector(container),
+    slides = document.querySelectorAll(slide),
     btnNext = document.querySelector(nextArrow),
     btnPrev = document.querySelector(prevArrow),
     total = document.querySelector(totalCounter),
@@ -11,6 +11,12 @@ function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCo
 
 let slideIndex = 1,
   offset = 0;
+
+  if (slides.length < 10) {
+    total.textContent = `0${slides.length}`;
+  } else {
+    total.textContent = slides.length;
+  }
 
 sliderField.style.width = 100 * slides.length + "%";
 sliderField.style.display = "flex";    
@@ -72,7 +78,7 @@ dots.forEach(dot => dot.style.opacity = ".5");
 dots[slideIndex-1].style.opacity = 1;
 }
 
-function setCurrent(slides, slideIndex, current) {
+function setCurrent(slides, slideIndex) {
 if (slides.length < 10) {
   current.textContent = `0${slideIndex}`
 } else {
@@ -84,13 +90,6 @@ function ReplaceStr(str) {
  return Number(str.replace(/\D/g, ""));
 }
 
-if (slides.length < 10) {
-  total.textContent = `0${slides.length}`;
-  current.textContent = `0${slideIndex}`;
-} else {
-  total.textContent = slides.length;
-  current.textContent = slideIndex;
-}
 
 btnNext.addEventListener("click", () => {
   if (offset == ReplaceStr(width) * (slides.length - 1)) {
