@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
         totalCounter: "#total",
         currentCouter: "#current",
         wrapper: ".offer__slider-wrapper",
-        field: ".offer__slider-inner",
+        field: ".offer__slider-inner"
 
     });
 

@@ -419,28 +419,27 @@ function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCo
 
   const slides = document.querySelectorAll(slide),
       slider = document.querySelector(container),
-      prev = document.querySelector(prevArrow),
-      next = document.querySelector(nextArrow),
+      btnPrev = document.querySelector(prevArrow),
+      btnNext = document.querySelector(nextArrow),
       total = document.querySelector(totalCounter),
       current = document.querySelector(currentCounter),
       slidesWrapper = document.querySelector(wrapper),
       width = window.getComputedStyle(slidesWrapper).width,
-      slidesField = document.querySelector(field);
+      sliderField = document.querySelector(field);
 
   if (slides.length < 10) {
       total.textContent = `0${slides.length}`;
-      current.textContent =  `0${slideIndex}`;
   } else {
       total.textContent = slides.length;
-      current.textContent =  slideIndex;
   }
+
   
 
 sliderField.style.width = 100 * slides.length + "%";
 sliderField.style.display = "flex";    
 sliderField.style.transition = "0.5s all";
 
-sliderWrapper.style.overflow = "hidden";
+slidesWrapper.style.overflow = "hidden";
 
 slides.forEach(slide => {
   slide.style.width = width;
@@ -570,7 +569,7 @@ dots.forEach(dot => {
   });
 });
 
-
+setCurrent(slides, slideIndex)
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);
@@ -831,7 +830,7 @@ window.addEventListener("DOMContentLoaded", () => {
         totalCounter: "#total",
         currentCouter: "#current",
         wrapper: ".offer__slider-wrapper",
-        field: ".offer__slider-inner",
+        field: ".offer__slider-inner"
 
     });
 
